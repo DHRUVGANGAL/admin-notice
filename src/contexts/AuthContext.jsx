@@ -1,4 +1,4 @@
-// contexts/AuthContext.js
+
 import React, { createContext, useState, useContext, useEffect } from 'react';
 
 const AuthContext = createContext();
@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    // Check token expiration
+   
     const checkTokenExpiration = () => {
       const token = localStorage.getItem('token');
       if (token) {

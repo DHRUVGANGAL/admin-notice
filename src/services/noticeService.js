@@ -1,8 +1,8 @@
 
-// services/noticeService.js
+
 import { API_URL } from '../config';
 
-// This function centralizes header creation for all API calls
+
 const getHeaders = (multipart = false) => {
   const token = localStorage.getItem('token');
   const headers = {};
@@ -48,8 +48,7 @@ export const createNotice = async (formData) => {
 
 export const fetchNoticeById = async (id) => {
   try {
-    // Since there's no specific endpoint for fetching a single notice,
-    // we'll fetch all notices and filter them client-side
+   
     const response = await fetchNotices();
     
     if (response.success && response.notices) {

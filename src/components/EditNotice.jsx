@@ -1,4 +1,4 @@
-// components/EditNotice.js
+
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { fetchNoticeById, updateNotice } from '../services/noticeService';

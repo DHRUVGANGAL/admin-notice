@@ -1,4 +1,4 @@
-// components/CreateNotice.js
+
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { createNotice } from '../services/noticeService';
@@ -14,7 +14,7 @@ const CreateNotice = () => {
     try {
       const response = await createNotice(formData);
       
-      // Check if response contains a notice or any indicator of success
+      
       if (response.notice || response.token || response._id) {
         toast.success('Notice created successfully');
         navigate(`/notices`);

@@ -1,5 +1,5 @@
 
-// components/NoticeForm.js
+
 import React, { useState, useRef } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 

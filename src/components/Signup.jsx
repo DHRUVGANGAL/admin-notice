@@ -1,4 +1,4 @@
-// components/Signup.js
+
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -52,15 +52,13 @@ const Signup = () => {
       
       const response = await register(adminData);
       
-      if (response.success) {
-        // Save token to localStorage
-        localStorage.setItem('token', response.token);
-        localStorage.setItem('admin', JSON.stringify(response.admin));
+      if (response.message) {
+     
         
         toast.success('Admin account created successfully!');
         navigate('/');
       } else {
-        toast.error(response.message || 'Registration failed');
+        toast.error('Registration failed');
       }
     } catch (error) {
       console.error('Registration error:', error);

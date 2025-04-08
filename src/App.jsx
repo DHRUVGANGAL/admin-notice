@@ -56,13 +56,13 @@
 
 
 
-// App.jsx
+
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// Components
+
 import Dashboard from './components/Dashboard';
 import NoticeList from './components/NoticeList';
 import CreateNotice from './components/CreateNotice';

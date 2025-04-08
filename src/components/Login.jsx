@@ -1,11 +1,10 @@
 
-
-// components/Login.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../services/authService';
 import { useAuth } from '../contexts/AuthContext';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -42,19 +41,19 @@ const handleSubmit = async (e) => {
   try {
     const response = await login(email, password);
     
-    // Check if response contains a token (success case)
+    
     if (response.token) {
-      // Create a user object since backend doesn't provide it
+      
       const user = {
         email: email,
-        // Add other properties if needed
+        
       };
       
       setAuthData(response.token, user);
       toast.success('Login successful');
       navigate('/');
     } else {
-      // Handle error case
+    
       toast.error(response.message || 'Login failed');
     }
   } catch (error) {
@@ -115,6 +114,14 @@ const handleSubmit = async (e) => {
               {loading ? 'Signing in...' : 'Sign in'}
             </button>
           </div>
+          <div className="text-center mt-4">
+          <p className="text-sm">
+            don't have an account?{' '}
+            <Link to="/signup" className="text-blue-500 hover:text-blue-700">
+              Signup
+            </Link>
+          </p>
+        </div>
         </form>
       </div>
     </div>
@@ -122,3 +129,4 @@ const handleSubmit = async (e) => {
 };
 
 export default Login;
+
