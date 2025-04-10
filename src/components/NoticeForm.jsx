@@ -144,6 +144,7 @@ for (let pair of formData.entries()) {
           </label>
           <div className="mt-1">
             <Editor
+              apiKey='qc7c0s69nj4tq5utn0a4w80nocvahho6pg8y3c6p4307ntzx'
               value={content}
               onEditorChange={(newContent) => setContent(newContent)}
               init={{

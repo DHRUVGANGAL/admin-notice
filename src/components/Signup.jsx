@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -15,19 +14,31 @@ const Signup = () => {
     departmentName: ''
   });
   const [loading, setLoading] = useState(false);
-
+  
+  // Department options for the dropdown
+  const departments = [
+    'CSE DS',
+    'CSE (CORE)',
+    'IT',
+    'CS',
+    'MECHANICAL',
+    'ECE',
+    'ELECTRICAL',
+    'CE'
+  ];
+  
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     
     // Basic validation
-    if (!formData.email || !formData.password || !formData.firstName || 
+    if (!formData.email || !formData.password || !formData.firstName ||
         !formData.lastName || !formData.departmentName) {
       toast.error('Please fill in all required fields');
       return;
@@ -53,8 +64,6 @@ const Signup = () => {
       const response = await register(adminData);
       
       if (response.message) {
-     
-        
         toast.success('Admin account created successfully!');
         navigate('/');
       } else {
@@ -67,14 +76,17 @@ const Signup = () => {
       setLoading(false);
     }
   };
-
+  
   return (
     <div className="max-w-md mx-auto bg-white rounded-lg shadow-md p-6">
-      <h2 className="text-2xl font-bold text-center mb-6">Create Admin Account</h2>
+      <div className="flex justify-center mb-4">
+        <img src="../public/images.png" alt="ABES Logo" className="h-24 w-auto object-contain" />
+      </div>
+      <h2 className="text-2xl font-bold text-center mb-5">Create Admin Account</h2>
       
       <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+        <div className="mb-3">
+          <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="email">
             Email Address
           </label>
           <input
@@ -89,8 +101,8 @@ const Signup = () => {
           />
         </div>
         
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="firstName">
+        <div className="mb-3">
+          <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="firstName">
             First Name
           </label>
           <input
@@ -105,8 +117,8 @@ const Signup = () => {
           />
         </div>
         
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="lastName">
+        <div className="mb-3">
+          <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="lastName">
             Last Name
           </label>
           <input
@@ -121,24 +133,29 @@ const Signup = () => {
           />
         </div>
         
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="departmentName">
+        <div className="mb-3">
+          <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="departmentName">
             Department
           </label>
-          <input
+          <select
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="departmentName"
-            type="text"
             name="departmentName"
             value={formData.departmentName}
             onChange={handleChange}
-            placeholder="Enter your department name"
             required
-          />
+          >
+            <option value="">Select a department</option>
+            {departments.map((department, index) => (
+              <option key={index} value={department}>
+                {department}
+              </option>
+            ))}
+          </select>
         </div>
         
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+        <div className="mb-3">
+          <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="password">
             Password
           </label>
           <input
@@ -153,8 +170,8 @@ const Signup = () => {
           />
         </div>
         
-        <div className="mb-6">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="confirmPassword">
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="confirmPassword">
             Confirm Password
           </label>
           <input
