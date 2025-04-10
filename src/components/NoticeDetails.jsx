@@ -135,9 +135,12 @@ const NoticeDetails = () => {
                   >
                     <i className={`${getFileIcon(file.fileType)} text-xl mr-3`}></i>
                     <div>
-                      <p className="text-sm font-medium truncate w-full" title={file.originalName}>
+                      {/* <p className="text-sm font-medium truncate w-full" title={file.originalName}>
                         {file.originalName}
-                      </p>
+                      </p> */}
+                      <p className="text-sm font-medium truncate max-w-[200px]" title={file.originalName}>
+                         {file.originalName}
+                       </p>
                       <p className="text-xs text-gray-500">{file.fileType.toUpperCase()}</p>
                     </div>
                   </a>
