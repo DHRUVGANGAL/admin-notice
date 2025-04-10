@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { fetchNotices, deleteNotice } from '../services/noticeService';
@@ -74,13 +72,15 @@ const NoticeList = () => {
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-6">
+     
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
         <h1 className="text-2xl font-bold">Notices</h1>
-        <Link to="/notices/create" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        <Link to="/notices/create" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 whitespace-nowrap">
           Create Notice
         </Link>
       </div>
 
+      
       <div className="mb-4">
         <div className="flex space-x-2">
           <button
@@ -100,64 +100,67 @@ const NoticeList = () => {
 
       {filteredNotices.length > 0 ? (
         <div className="bg-white rounded-lg shadow overflow-hidden">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
-              <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Attachments</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {filteredNotices.map(notice => (
-                <tr key={notice._id}>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="flex items-center">
-                      <div className="ml-4">
-                        <div className="text-sm font-medium text-gray-900 flex items-center">
-                          <Link to={`/notices/${notice._id}`} className="hover:text-blue-600">
-                            {notice.title}
-                          </Link>
-                          {notice.isImportant && (
-                            <span className="ml-2 bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full">
-                              Important
-                            </span>
-                          )}
+        
+          <div className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Category</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Date</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Attachments</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {filteredNotices.map(notice => (
+                  <tr key={notice._id}>
+                    <td className="px-6 py-4">
+                      <div className="flex items-start">
+                        <div>
+                          <div className="text-sm font-medium text-gray-900 flex items-center flex-wrap">
+                            <Link to={`/notices/${notice._id}`} className="hover:text-blue-600 break-words">
+                              {notice.title}
+                            </Link>
+                            {notice.isImportant && (
+                              <span className="ml-2 bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full whitespace-nowrap">
+                                Important
+                              </span>
+                            )}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900">{notice.category}</div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-500">{new Date(notice.createdAt).toLocaleDateString()}</div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-500">{notice.files?.length || 0} files</div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                    <div className="flex space-x-2">
-                      <Link to={`/notices/${notice._id}`} className="text-blue-600 hover:text-blue-800">
-                        View
-                      </Link>
-                      <Link to={`/notices/${notice._id}/edit`} className="text-green-600 hover:text-green-800">
-                        Edit
-                      </Link>
-                      <button
-                        onClick={() => handleDeleteClick(notice._id)}
-                        className="text-red-600 hover:text-red-800"
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm text-gray-900">{notice.category}</div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm text-gray-500">{new Date(notice.createdAt).toLocaleDateString()}</div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm text-gray-500">{notice.files?.length || 0} files</div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                      <div className="flex space-x-2">
+                        <Link to={`/notices/${notice._id}`} className="text-blue-600 hover:text-blue-800">
+                          View
+                        </Link>
+                        <Link to={`/notices/${notice._id}/edit`} className="text-green-600 hover:text-green-800">
+                          Edit
+                        </Link>
+                        <button
+                          onClick={() => handleDeleteClick(notice._id)}
+                          className="text-red-600 hover:text-red-800"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       ) : (
         <div className="bg-white p-6 rounded-lg shadow text-center">
