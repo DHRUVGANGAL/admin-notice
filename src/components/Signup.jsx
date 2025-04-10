@@ -80,7 +80,7 @@ const Signup = () => {
   return (
     <div className="max-w-md mx-auto bg-white rounded-lg shadow-md p-6">
       <div className="flex justify-center mb-4">
-        <img src="../public/images.png" alt="ABES Logo" className="h-24 w-auto object-contain" />
+        <img src="/images.png" alt="ABES Logo" className="h-24 w-auto object-contain" />
       </div>
       <h2 className="text-2xl font-bold text-center mb-5">Create Admin Account</h2>
       
